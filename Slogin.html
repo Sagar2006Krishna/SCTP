@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ShopEase Login</title>
+  <style>
+    :root {
+      --primary: #4a90e2;
+      --dark: #2c3e50;
+      --light: #ecf0f1;
+      --error: #e74c3c;
+      --success: #27ae60;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--light);
+      color: var(--dark);
+    }
+
+    header {
+      background-color: var(--primary);
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 2rem;
+    }
+
+    nav {
+      margin-top: 10px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 10px;
+      font-weight: 500;
+    }
+
+    .container {
+      max-width: 450px;
+      background: white;
+      margin: 60px auto;
+      padding: 40px;
+      border-radius: 8px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: var(--primary);
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-bottom: 20px;
+      font-size: 15px;
+    }
+
+    input[type="submit"] {
+      background-color: var(--primary);
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #357ab8;
+    }
+
+    .error-message,
+    .success-message {
+      text-align: center;
+      margin-top: 15px;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .error-message {
+      color: var(--error);
+    }
+
+    .success-message {
+      color: var(--success);
+    }
+
+    .additional-links {
+      text-align: center;
+      margin-top: 15px;
+    }
+
+    .additional-links a {
+      color: var(--primary);
+      text-decoration: none;
+      margin: 0 5px;
+    }
+
+    .additional-links a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      background-color: var(--primary);
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 50px;
+    }
+
+    @media screen and (max-width: 500px) {
+      .container {
+        margin: 20px;
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>ShopEase</h1>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">Products</a>
+      <a href="#">Sign Up</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <h2>Login</h2>
+    <form id="loginForm">
+      <label for="username">Username</label>
+      <input type="text" id="username" name="username" required />
+
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" required />
+
+      <input type="submit" value="Login" />
+    </form>
+
+    <div class="error-message" id="error"></div>
+    <div class="success-message" id="success"></div>
+
+    <div class="additional-links">
+      <p><a href="#">Forgot Password?</a></p>
+      <p>Don't have an account? <a href="#">Create one</a></p>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 ShopEase. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const form = document.getElementById("loginForm");
+    const errorDiv = document.getElementById("error");
+    const successDiv = document.getElementById("success");
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const username = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value.trim();
+
+      errorDiv.textContent = "";
+      successDiv.textContent = "";
+
+      if (username === "" || password === "") {
+        errorDiv.textContent = "Please fill in all fields.";
+        return;
+      }
+
+      // Simulated check
+      if (username === "demo" && password === "demo123") {
+        successDiv.textContent = "Login successful! Redirecting...";
+        setTimeout(() => {
+          window.location.href = "dashboard.html";
+        }, 2000);
+      } else {
+        errorDiv.textContent = "Invalid username or password.";
+      }
+    });
+  </script>
+</body>
+
+</html>
+
