@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up - ShopEase</title>
+  <style>
+    :root {
+      --primary: #4a90e2;
+      --light: #f4f4f4;
+      --dark: #333;
+      --error: #e74c3c;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: var(--light);
+      color: var(--dark);
+    }
+
+    header {
+      background-color: var(--primary);
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 2rem;
+    }
+
+    .container {
+      max-width: 500px;
+      margin: 40px auto;
+      padding: 30px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: var(--primary);
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-bottom: 20px;
+      font-size: 14px;
+    }
+
+    input[type="submit"] {
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      padding: 12px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #357ab8;
+    }
+
+    .error-message {
+      color: var(--error);
+      font-size: 14px;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+
+    .success-message {
+      color: green;
+      font-size: 14px;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+
+    .terms {
+      font-size: 13px;
+      margin-top: -10px;
+      margin-bottom: 20px;
+    }
+
+    .terms input {
+      margin-right: 8px;
+    }
+
+    footer {
+      background-color: var(--primary);
+      color: white;
+      text-align: center;
+      padding: 20px;
+      position: relative;
+      bottom: 0;
+      width: 100%;
+    }
+
+    @media screen and (max-width: 600px) {
+      .container {
+        margin: 20px;
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>ShopEase</h1>
+  </header>
+
+  <div class="container">
+    <h2>Create Your Account</h2>
+    <div class="error-message" id="error"></div>
+    <div class="success-message" id="success"></div>
+    <form id="signupForm">
+      <label for="fullname">Full Name</label>
+      <input type="text" id="fullname" name="fullname" required>
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" required>
+
+      <label for="confirm">Confirm Password</label>
+      <input type="password" id="confirm" name="confirm" required>
+
+      <div class="terms">
+        <input type="checkbox" id="agree" required>
+        <label for="agree">I agree to the <a href="#">Terms and Conditions</a></label>
+      </div>
+
+      <input type="submit" value="Sign Up">
+    </form>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 ShopEase. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const form = document.getElementById('signupForm');
+    const errorDiv = document.getElementById('error');
+    const successDiv = document.getElementById('success');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const name = document.getElementById('fullname').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+      const confirm = document.getElementById('confirm').value;
+      const agree = document.getElementById('agree').checked;
+
+      errorDiv.textContent = '';
+      successDiv.textContent = '';
+
+      if (!agree) {
+        errorDiv.textContent = 'You must agree to the terms and conditions.';
+        return;
+      }
+
+      if (password !== confirm) {
+        errorDiv.textContent = 'Passwords do not match.';
+        return;
+      }
+
+      if (password.length < 6) {
+        errorDiv.textContent = 'Password must be at least 6 characters long.';
+        return;
+      }
+
+      successDiv.textContent = 'Account created successfully!';
+      form.reset();
+    });
+  </script>
+</body>
+
+</html>
+
